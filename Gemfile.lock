@@ -4,6 +4,7 @@ PATH
     cavendish (0.1.0)
       colorize
       commander (~> 4.4, >= 4.4.0)
+      power-types
 
 GEM
   remote: https://rubygems.org/
@@ -61,6 +62,8 @@ GEM
     parallel (1.20.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)
+    power-types (0.4.0)
+      activesupport
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)

@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "colorize"
   spec.add_dependency "commander", "~> 4.4", ">= 4.4.0"
+  spec.add_dependency "power-types"
   spec.add_development_dependency "bundler", "~> 2.2.15"
   spec.add_development_dependency "coveralls"
   spec.add_development_dependency "guard-rspec"
