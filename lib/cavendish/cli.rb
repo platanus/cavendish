@@ -30,7 +30,8 @@ module Cavendish
 
     def create_command_steps
       [
-        Cavendish::Commands::CreateExpoProject
+        Cavendish::Commands::CreateExpoProject,
+        Cavendish::Commands::AddTailwind
       ]
     end
   end
