@@ -36,7 +36,8 @@ module Cavendish
         Cavendish::Commands::AddEslint,
         Cavendish::Commands::AddTesting,
         Cavendish::Commands::AddCiConfig,
-        Cavendish::Commands::AddReadme
+        Cavendish::Commands::AddReadme,
+        Cavendish::Commands::ConfigureGit
       ]
     end
   end
