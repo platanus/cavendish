@@ -29,7 +29,9 @@ module Cavendish
     end
 
     def create_command_steps
-      []
+      [
+        Cavendish::Commands::CreateExpoProject
+      ]
     end
   end
 end
