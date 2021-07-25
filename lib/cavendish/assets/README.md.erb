@@ -1,0 +1,59 @@
+# <%= @config.human_project_name %>
+
+This is a React Native + Expo application, initially generated using [Cavendish](https://github.com/platanus/cavendish) by Platanus.
+
+## Instalation and development
+
+Assuming you've cloned the repo and that you have [Node](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/), the first thing you need to install is the Expo CLI:
+
+```bash
+yarn global add expo-cli@4.8.x
+```
+
+Then install the project dependencies in your local machine:
+
+```bash
+yarn install
+```
+
+And you're ready to go! You can now run the project with `yarn start` and scan the QR shown in console with the [Expo Go App](https://expo.dev/client). Remember that your phone and laptop have to be connected to the same wi-fi network in order for this to work!
+
+## Continuous Integration and deployment
+
+The project has a setup to run tests and style guides in CircleCI. You can also run the test locally simulating the production environment using [CircleCI's method](https://circleci.com/docs/2.0/local-cli/).
+
+The CI workflow also takes care of deploying and [publishing your application to Expo](https://docs.expo.io/workflow/publishing/). In order for this to work, you need to:
+
+1. Create a new account in [Expo](https://expo.dev/)
+1. [_Optional_] Create an [organization](https://docs.expo.io/accounts/account-types/#creating-new-organizations)
+1. Create an [access token](https://docs.expo.io/accounts/programmatic-access/)
+1. Configure the token as a [CircleCI environment variable](https://circleci.com/docs/2.0/env-vars/)
+
+And you are done! Each time there is a commit in master, the pipeline will try to deploy the application.
+
+If it succeeds, you will be able to scan and share the app QR code through `https://expo.io/@organization-or-user-name/<%= @config.project_name %>`.
+
+## Style Guides
+
+Style guides are enforced through a CircleCI [job](.circleci/config.yml) with [reviewdog](https://github.com/reviewdog/reviewdog) as a reporter, using per-project dependencies and style configurations.
+
+Please note that this reviewdog implementation requires a GitHub user token to comment on pull requests. A token can be generated [here](https://github.com/settings/tokens), and it should have at least the `repo` option checked.
+
+The included `config.yml` assumes your CircleCI organization has a context named `org-global` with the required token under the environment variable `REVIEWDOG_GITHUB_API_TOKEN`.
+
+The project comes bundled with configuration files available in this repository. You can add or modify rules by editing the [`.eslintrc.json`](.eslintrc.json) file.
+
+You can (and should) use linter integrations for your text editor of choice, using the project's configuration.
+
+## Internal Dependencies
+
+### Tailwind RN
+We use the TailwindCSS adaptation for React Native: [`tailwind-rn`](https://github.com/vadimdemedes/tailwind-rn), in order to reduce the friction in mobile apps styling.
+
+If you need to add custom styles, make sure you follow the instructions given in the package's README.
+
+### React Navigation
+We use [React Navigation](https://reactnavigation.org/)@<%= Cavendish::REACT_NAVIGATION_VERSION %> to handle the shown screens and navigation interactions of the application.
+
+### Testing
+We use [Jest](https://jestjs.io/) and [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/) in order to test the components of this app.
