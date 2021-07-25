@@ -32,7 +32,8 @@ module Cavendish
       [
         Cavendish::Commands::CreateExpoProject,
         Cavendish::Commands::AddTailwind,
-        Cavendish::Commands::AddReactNavigation
+        Cavendish::Commands::AddReactNavigation,
+        Cavendish::Commands::AddEslint
       ]
     end
   end
