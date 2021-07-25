@@ -35,7 +35,8 @@ module Cavendish
         Cavendish::Commands::AddReactNavigation,
         Cavendish::Commands::AddEslint,
         Cavendish::Commands::AddTesting,
-        Cavendish::Commands::AddCiConfig
+        Cavendish::Commands::AddCiConfig,
+        Cavendish::Commands::AddReadme
       ]
     end
   end
