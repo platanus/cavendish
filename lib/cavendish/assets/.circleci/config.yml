@@ -1,0 +1,93 @@
+version: 2.1
+
+node-image: &node-image circleci/node:14
+
+executors:
+  base-executor:
+    docker:
+      - image: *node-image
+
+commands:
+  setup:
+    description: checkout code, restore cache, install dependencies, save cache
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - yarn-dependencies-{{ checksum "yarn.lock" }}
+          - yarn-dependencies-
+      - run:
+          name: Install yarn dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          key: yarn-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+  deploy_expo:
+    description: deploys app to expo
+    steps:
+      - run:
+          name: Check if EXPO_TOKEN environment variable is defined
+          command: $([ -v EXPO_TOKEN ])
+      - run:
+          name: Install Expo CLI and add yarn global path
+          command: |
+            yarn global add expo-cli
+            echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> $BASH_ENV
+      - run:
+          name: Publish to expo
+          command: expo publish --non-interactive
+
+jobs:
+  test:
+    executor: base-executor
+    steps:
+      - setup
+      - run:
+          name: Yarn test
+          command: yarn test
+
+  lint:
+    executor: base-executor
+    steps:
+      - setup
+      - run:
+          name: Install reviewdog
+          command: |
+            curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b ./bin
+      - run:
+          name: Get files to lint
+          command: mkdir tmp && git diff origin/main --name-only --diff-filter=d > tmp/files_to_lint
+      - run:
+          name: Run eslint
+          shell: /bin/bash
+          command: |
+            cat tmp/files_to_lint | grep -E '.+\.(js|jsx|vue)$' | xargs yarn run eslint \
+            | ./bin/reviewdog -reporter=github-pr-review -f=eslint
+      - run:
+          name: Run stylelint
+          shell: /bin/bash
+          command: |
+            cat tmp/files_to_lint | grep -E '.+\.(js|jsx|scss|css|less)$' | xargs yarn run stylelint \
+            | ./bin/reviewdog -reporter=github-pr-review -f=stylelint
+
+  deploy:
+    executor: base-executor
+    steps:
+      - setup
+
+workflows:
+  version: 2
+  test_lint_and_deploy:
+    jobs:
+      - test
+      - lint:
+          context: org-global
+      - deploy:
+          requires:
+            - test
+            - lint
+          filters:
+            branches:
+              only:
+                - main
