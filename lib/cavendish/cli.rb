@@ -31,7 +31,8 @@ module Cavendish
     def create_command_steps
       [
         Cavendish::Commands::CreateExpoProject,
-        Cavendish::Commands::AddTailwind
+        Cavendish::Commands::AddTailwind,
+        Cavendish::Commands::AddReactNavigation
       ]
     end
   end
