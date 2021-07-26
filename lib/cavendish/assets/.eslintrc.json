@@ -1,0 +1,43 @@
+{
+  "env": {
+    "es6": true,
+    "jest": true
+  },
+  "extends": "airbnb",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+  "rules": {
+    "no-console": 2,
+    "react/prop-types": ["error", { "ignore": ["route", "navigation"] }],
+    "react/jsx-first-prop-new-line": [1, "multiline"],
+    "react/jsx-max-props-per-line": [1, { "maximum": 1 }],
+    "react/jsx-one-expression-per-line": "off",
+    "global-require": "off",
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.spec.js", "src/factories/**"] }
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".spec.js", ".jsx"] }],
+    "react/jsx-props-no-spreading": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
+}
