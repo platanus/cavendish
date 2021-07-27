@@ -3,7 +3,7 @@ module Cavendish
     attr_reader :project_name
 
     def project_name=(value)
-      @project_name = value.to_s.underscore
+      @project_name = value.to_s.underscore.dasherize
     end
 
     def human_project_name
