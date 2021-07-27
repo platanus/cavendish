@@ -1,4 +1,15 @@
 import React from 'react';
+<% if @config.use_enzyme? %>
+import { shallow } from 'enzyme';
+import HomeScreen from '../HomeScreen';
+
+describe('HomeScreen specs', () => {
+  it('shows application name', () => {
+    const component = shallow(<HomeScreen />);
+    expect(component.contains('<%= @config.human_project_name %>')).toBe(true);
+  });
+});
+<% else %>
 import { render } from '@testing-library/react-native';
 import HomeScreen from '../HomeScreen';
 
@@ -8,3 +19,4 @@ describe('HomeScreen specs', () => {
     expect(component.queryByText('Hello <%= @config.human_project_name %>!')).not.toBeNull();
   });
 });
+<% end %>
