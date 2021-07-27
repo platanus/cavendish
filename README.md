@@ -23,7 +23,22 @@ bundle install
 
 ## Usage
 
-TODO
+> Cavendish uses Yarn under the hood, so make sure that you've installed in your system before running the generator.
+
+Use the `cavendish create` command to create a new project:
+
+    $ cavendish create <project-name>
+
+This command will ask for your preferences on some packages and generate a full React Native + Expo project with:
+
+- ESLint
+- Testing with Jest and `@testing-library/react-native`
+- A base `@react-navigation` config for navigation and screens
+- A base `tailwind-rn` for managing styles
+- CI configuration for CircleCI
+- An initialized Git repository
+
+The generator uses the `expo-cli` to generate a blank managed workflow project. *Bare workflow* projects are not supported for now.
 
 ## Testing
 
