@@ -22,7 +22,7 @@ module Cavendish
         c.syntax = 'cavendish create'
         c.description = 'Create a new React Native + Expo project'
         c.action do |args|
-          config.project_name = args.first
+          setup_config(config, args)
           create_command_steps.each { |command| command.for(config: config) }
         end
       end
@@ -39,6 +39,15 @@ module Cavendish
         Cavendish::Commands::AddReadme,
         Cavendish::Commands::ConfigureGit
       ]
+    end
+
+    def setup_config(config, args)
+      config.project_name = args.first
+      config.testing_library = choose(
+        'Which testing library would you like to use?',
+        'Enzyme (unit orientated library)',
+        '@testing-library/react-native (integration orientated library)'
+      )
     end
   end
 end
