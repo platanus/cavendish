@@ -32,7 +32,7 @@ Use the `cavendish create` command to create a new project:
 This command will ask for your preferences on some packages and generate a full React Native + Expo project with:
 
 - ESLint
-- Testing with Jest and `@testing-library/react-native`
+- Testing with Jest (either with `@testing-library/react-native` or `enzyme`)
 - A base `@react-navigation` config for navigation and screens
 - A base `tailwind-rn` for managing styles
 - CI configuration for CircleCI
