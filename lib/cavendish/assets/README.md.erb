@@ -25,7 +25,7 @@ The project has a setup to run tests and style guides in CircleCI. You can also 
 The CI workflow also takes care of deploying and [publishing your application to Expo](https://docs.expo.io/workflow/publishing/). In order for this to work, you need to:
 
 1. Create a new account in [Expo](https://expo.dev/)
-1. [_Optional_] Create an [organization](https://docs.expo.io/accounts/account-types/#creating-new-organizations)
+1. [_Optional_] Create an [organization](https://docs.expo.io/accounts/account-types/#creating-new-organizations) and [add the owner key](https://docs.expo.dev/versions/latest/config/app/#owner) to the `app.json` file
 1. Create an [access token](https://docs.expo.io/accounts/programmatic-access/)
 1. Configure the token as a [CircleCI environment variable](https://circleci.com/docs/2.0/env-vars/)
 
@@ -56,4 +56,4 @@ If you need to add custom styles, make sure you follow the instructions given in
 We use [React Navigation](https://reactnavigation.org/)@<%= Cavendish::REACT_NAVIGATION_VERSION %> to handle the shown screens and navigation interactions of the application.
 
 ### Testing
-We use [Jest](https://jestjs.io/) and [React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/) in order to test the components of this app.
+We use [Jest](https://jestjs.io/) and <%= @config.use_enzyme? ? '[Enzyme](https://enzymejs.github.io/enzyme/)' : '[React Native Testing Library](https://testing-library.com/docs/react-native-testing-library/intro/)' %> in order to test the components of this app.
