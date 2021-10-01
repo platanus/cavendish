@@ -8,7 +8,7 @@ module Cavendish
     end
 
     def use_enzyme?
-      @testing_library === 'Enzyme'
+      @testing_library.include? 'Enzyme'
     end
 
     def human_project_name
