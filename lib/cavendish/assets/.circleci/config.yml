@@ -75,6 +75,7 @@ jobs:
     executor: base-executor
     steps:
       - setup
+      - deploy_expo
 
 workflows:
   version: 2
