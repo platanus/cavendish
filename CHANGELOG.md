@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Unreleased
 
 - Fix an issue with the Enzyme choice, add README detail of testing library choice and fix some CI issues [#12](https://github.com/platanus/cavendish/pull/12)
+- Bump `expo-cli` and `@react-navigation` versions [#15](https://github.com/platanus/cavendish/pull/15)
 
 ### 0.1.0
 
