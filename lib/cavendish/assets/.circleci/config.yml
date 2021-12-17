@@ -24,7 +24,11 @@ commands:
           paths:
             - node_modules
   deploy_expo:
-    description: deploys app to expo
+    description: deploys app to expo on a defined release channel
+    parameters:
+      release_channel:
+        description: the release channel which the app will be published
+        type: string
     steps:
       - run:
           name: Check if EXPO_TOKEN environment variable is defined
@@ -36,7 +40,7 @@ commands:
             echo 'export PATH="$HOME/.yarn/bin:$PATH"' >> $BASH_ENV
       - run:
           name: Publish to expo
-          command: expo publish --non-interactive
+          command: expo publish --non-interactive --release-channel <<parameters.release_channel>>
 
 jobs:
   test:
@@ -75,7 +79,8 @@ jobs:
     executor: base-executor
     steps:
       - setup
-      - deploy_expo
+      - deploy_expo:
+         release_channel: staging
 
 workflows:
   version: 2
