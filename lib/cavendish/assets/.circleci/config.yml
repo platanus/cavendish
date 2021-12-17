@@ -75,12 +75,19 @@ jobs:
             cat tmp/files_to_lint | grep -E '.+\.(js|jsx|scss|css|less)$' | xargs yarn run stylelint \
             | ./bin/reviewdog -reporter=github-pr-review -f=stylelint
 
-  deploy:
+  staging_deploy:
     executor: base-executor
     steps:
       - setup
       - deploy_to_expo:
           release_channel: staging
+
+  production_deploy:
+    executor: base-executor
+    steps:
+      - setup
+      - deploy_to_expo:
+          release_channel: production
 
 workflows:
   version: 2
@@ -89,7 +96,7 @@ workflows:
       - test
       - lint:
           context: org-global
-      - deploy:
+      - staging_deploy:
           requires:
             - test
             - lint
@@ -97,3 +104,11 @@ workflows:
             branches:
               only:
                 - master
+      - production_deploy:
+          requires:
+            - test
+            - lint
+          filters:
+            branches:
+              only:
+                - production
