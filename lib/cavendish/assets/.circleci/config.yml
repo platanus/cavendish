@@ -23,7 +23,7 @@ commands:
           key: yarn-dependencies-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-  deploy_expo:
+  deploy_to_expo:
     description: deploys app to expo on a defined release channel
     parameters:
       release_channel:
@@ -79,8 +79,8 @@ jobs:
     executor: base-executor
     steps:
       - setup
-      - deploy_expo:
-         release_channel: staging
+      - deploy_to_expo:
+          release_channel: staging
 
 workflows:
   version: 2
