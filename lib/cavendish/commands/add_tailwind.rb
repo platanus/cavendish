@@ -12,7 +12,7 @@ module Cavendish
 
       def install_tailwind_rn_dependencies
         run_in_project('yarn add tailwind-rn')
-        run_in_project('yarn add -D tailwindcss')
+        run_in_project("yarn add -D tailwindcss@#{Cavendish::TAILWIND_VERSION}")
       end
 
       def copy_tailwind_config_file
