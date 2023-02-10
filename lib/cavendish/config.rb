@@ -7,10 +7,6 @@ module Cavendish
       @project_name = value.to_s.underscore.dasherize
     end
 
-    def use_enzyme?
-      @testing_library.include? 'Enzyme'
-    end
-
     def human_project_name
       project_name.humanize
     end
