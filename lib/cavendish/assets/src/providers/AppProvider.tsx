@@ -1,4 +1,3 @@
-import React from 'react';
 import { TailwindProvider, Utilities } from 'tailwind-rn';
 
 import utilities from '../../tailwind.json';
