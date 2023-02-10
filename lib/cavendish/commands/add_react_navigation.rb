@@ -11,7 +11,7 @@ module Cavendish
 
       def install_dependencies
         run_in_project("yarn add #{react_navigation_core_dependencies.join(' ')}")
-        run_in_project("expo install #{react_navigation_side_dependencies.join(' ')}")
+        run_in_project("npx expo install #{react_navigation_side_dependencies.join(' ')}")
       end
 
       def add_example_navigator_and_screens
