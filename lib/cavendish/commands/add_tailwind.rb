@@ -15,10 +15,6 @@ module Cavendish
       def run_setup_script
         run_in_project('npx setup-tailwind-rn')
       end
-
-      def copy_tailwind_config_file
-        copy_file('tailwind.config.js', 'tailwind.config.js')
-      end
     end
   end
 end
