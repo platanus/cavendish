@@ -1,0 +1,12 @@
+diff --git a/node_modules/tailwind-rn/dist/tailwind-provider.d.ts b/node_modules/tailwind-rn/dist/tailwind-provider.d.ts
+index afa56a7..5fdf130 100644
+--- a/node_modules/tailwind-rn/dist/tailwind-provider.d.ts
++++ b/node_modules/tailwind-rn/dist/tailwind-provider.d.ts
+@@ -4,6 +4,7 @@ import { Utilities } from './types';
+ interface Props {
+     utilities: Utilities;
+     colorScheme?: ColorSchemeName;
++    children: React.ReactNode;
+ }
+ declare const TailwindProvider: React.FC<Props>;
+ export default TailwindProvider;
