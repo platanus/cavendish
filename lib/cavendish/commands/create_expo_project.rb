@@ -13,7 +13,7 @@ module Cavendish
       end
 
       def create_expo_project
-        run("expo init #{config.project_name} --template blank")
+        run("npx create-expo-app #{config.project_name} --template blank")
       end
     end
   end
