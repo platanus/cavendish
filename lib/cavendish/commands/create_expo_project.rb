@@ -8,7 +8,7 @@ module Cavendish
       private
 
       def create_expo_project
-        run("npx create-expo-app #{config.project_name} --template blank")
+        run("npx create-expo-app #{config.project_name} -t expo-template-blank-typescript")
       end
     end
   end
