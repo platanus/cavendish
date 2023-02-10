@@ -15,13 +15,13 @@ module Cavendish
       end
 
       def add_example_navigator_and_screens
-        copy_template('src/screens/HomeScreen.jsx', 'src/screens/HomeScreen.jsx')
-        copy_file('src/navigators/HomeNavigator.jsx', 'src/navigators/HomeNavigator.jsx')
+        copy_template('src/screens/HomeScreen.tsx', 'src/screens/HomeScreen.tsx')
+        copy_file('src/navigators/HomeNavigator.tsx', 'src/navigators/HomeNavigator.tsx')
       end
 
       def replace_app_entrypoint
-        remove_in_project('App.js')
-        copy_file('App.jsx', 'App.jsx')
+        remove_in_project('App.tsx')
+        copy_file('App.tsx', 'App.tsx')
       end
 
       def react_navigation_core_dependencies
