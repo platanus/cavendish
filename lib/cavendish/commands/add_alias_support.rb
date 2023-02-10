@@ -10,6 +10,7 @@ module Cavendish
         add_typescript_settings
         install_eslint_dependencies
         add_eslint_settings
+        add_babel_settings
       end
 
       private
@@ -24,6 +25,10 @@ module Cavendish
 
       def add_eslint_settings
         inject_to_json_file('.eslintrc.json', eslint_settings)
+      end
+
+      def add_babel_settings
+        gsub_file('babel.config.js', "presets: ['babel-preset-expo'],", babel_settings)
       end
 
       def typescript_settings
@@ -43,6 +48,21 @@ module Cavendish
             }
           }
         }
+      end
+
+      def babel_settings
+        <<~BABEL.strip
+          presets: ['babel-preset-expo'],
+          plugins: [
+            ['module-resolver', {
+              alias: {
+                #{ALIASES.map { |from, to| "'#{from}': `${__dirname}/#{to}`" }.join(
+                  ",\n\t\t\t\t\t"
+                )}
+              },
+            }],
+          ],
+        BABEL
       end
     end
   end
