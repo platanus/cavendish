@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-
-import tailwind from '../utils/tailwindRn';
+import { useTailwind } from 'tailwind-rn';
 
 export default function HomeScreen() {
+  const tailwind = useTailwind();
   const [projectName] = useState('<%= @config.human_project_name %>');
 
   return (
