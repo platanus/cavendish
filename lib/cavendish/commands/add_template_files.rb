@@ -6,6 +6,7 @@ module Cavendish
         copy_provider_file
         copy_sample_navigator_and_screens
         replace_app_entrypoint
+        copy_test_files
       end
 
       private
@@ -26,6 +27,13 @@ module Cavendish
       def replace_app_entrypoint
         remove_in_project('App.tsx')
         copy_file('App.tsx', 'App.tsx')
+      end
+
+      def copy_test_files
+        copy_template(
+          'src/screens/__specs__/HomeScreen.spec.js',
+          'src/screens/__specs__/HomeScreen.spec.js'
+        )
       end
     end
   end
