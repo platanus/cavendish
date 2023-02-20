@@ -4,7 +4,7 @@ module Cavendish
       def perform
         install_dependencies
         add_config_to_package
-        add_testing_library_settings
+        add_testing_library_dependencies
         add_example_test_file
       end
 
@@ -18,7 +18,7 @@ module Cavendish
         inject_to_json_file('package.json', package_configuration)
       end
 
-      def add_testing_library_settings
+      def add_testing_library_dependencies
         run_in_project("yarn add -D #{dependencies.join(' ')}")
       end
 
