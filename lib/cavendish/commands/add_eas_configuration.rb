@@ -5,6 +5,7 @@ module Cavendish
         install_eas_cli
         register_and_create_organization_prompt
         login_to_expo
+        configure_project_owner
         set_basic_project_config
         inject_advanced_eas_config
       end
@@ -52,6 +53,10 @@ module Cavendish
 
       def login_to_expo
         run_in_project('eas login')
+      end
+
+      def configure_project_owner
+        run_in_project('eas project:init')
       end
 
       def set_basic_project_config
