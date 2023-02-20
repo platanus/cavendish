@@ -34,6 +34,8 @@ module Cavendish
           'src/screens/__specs__/HomeScreen.spec.tsx',
           'src/screens/__specs__/HomeScreen.spec.tsx'
         )
+        copy_file('__mocks__/tailwind-rn.ts', '__mocks__/tailwind-rn.ts')
+        copy_file('__mocks__/@react-navigation/native.ts', '__mocks__/@react-navigation/native.ts')
       end
     end
   end
