@@ -3,12 +3,20 @@ module Cavendish
     class AddEASConfiguration < Cavendish::Commands::Base
       def perform
         install_eas_cli
+        register_and_create_organization_prompt
         login_to_expo
         set_basic_project_config
         inject_advanced_eas_config
       end
 
       private
+
+      REGISTER_MESSAGE = <<~MSG
+        To configure Expo Application Services (EAS) into your app, it is necessary to have an expo account. Please register at https://expo.dev/signup if you don't have an account (enter to continue).
+      MSG
+      CREATE_ORGANIZATION_MESSAGE = <<~MSG
+        If you are planning to collaborate with others in this project, it is adviced to create an organization. Create an organization at https://expo.dev/create-organization (enter to continue)
+      MSG
 
       EAS_ADVANCED_CONFIG = {
         build: {
@@ -35,6 +43,11 @@ module Cavendish
 
       def install_eas_cli
         run_in_project('npm install -g eas-cli')
+      end
+
+      def register_and_create_organization_prompt
+        ask(REGISTER_MESSAGE)
+        ask(CREATE_ORGANIZATION_MESSAGE)
       end
 
       def login_to_expo
