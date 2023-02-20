@@ -31,8 +31,8 @@ module Cavendish
 
       def copy_test_files
         copy_template(
-          'src/screens/__specs__/HomeScreen.spec.js',
-          'src/screens/__specs__/HomeScreen.spec.js'
+          'src/screens/__specs__/HomeScreen.spec.tsx',
+          'src/screens/__specs__/HomeScreen.spec.tsx'
         )
       end
     end
