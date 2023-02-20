@@ -37,7 +37,9 @@ module Cavendish
         Cavendish::Commands::AddTesting,
         Cavendish::Commands::AddCiConfig,
         Cavendish::Commands::AddReadme,
-        Cavendish::Commands::ConfigureGit
+        Cavendish::Commands::ConfigureGit,
+        Cavendish::Commands::AddTemplateFiles,
+        Cavendish::Commands::PatchDependencies
       ]
     end
 
