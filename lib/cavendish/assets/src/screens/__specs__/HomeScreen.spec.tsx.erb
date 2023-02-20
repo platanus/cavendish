@@ -1,10 +1,16 @@
-import React from 'react';
 import { render } from '@testing-library/react-native';
+
 import HomeScreen from '../HomeScreen';
 
 describe('HomeScreen specs', () => {
   it('shows application name', () => {
     const component = render(<HomeScreen />);
     expect(component.queryByText('Hello <%= @config.human_project_name %>!')).not.toBeNull();
+  });
+
+  it('has a white text over a gray background', () => {
+    const component = render(<HomeScreen />);
+    expect(component.queryByText('Hello <%= @config.human_project_name %>!')?.props.style).toMatch(/text-white/);
+    expect(component.root.props.style).toMatch(/bg-gray-\d{2,3}/);
   });
 });
