@@ -32,8 +32,9 @@ module Cavendish
       [
         Cavendish::Commands::CreateExpoProject,
         Cavendish::Commands::AddTailwind,
-        Cavendish::Commands::AddReactNavigation,
         Cavendish::Commands::AddEslint,
+        Cavendish::Commands::AddAliasSupport,
+        Cavendish::Commands::AddReactNavigation,
         Cavendish::Commands::AddTesting,
         Cavendish::Commands::AddCiConfig,
         Cavendish::Commands::AddReadme,

@@ -1,5 +1,12 @@
 module Cavendish
   module Utils
+    def gsub_file(in_project_path, flag, *args, &block)
+      path = File.join(project_root_path, in_project_path)
+      content = File.binread(path)
+      content.gsub!(flag, *args, &block)
+      File.open(path, "wb") { |file| file.write(content) }
+    end
+
     def copy_file(source, destination)
       log 'CREATE', destination
       ::FileUtils.cp(get_template_path(source), get_or_generate_destination_path(destination))

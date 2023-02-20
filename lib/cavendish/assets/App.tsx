@@ -1,5 +1,5 @@
-import AppProvider from './src/providers/AppProvider';
-import HomeNavigator from './src/navigators/HomeNavigator';
+import AppProvider from '@/providers/AppProvider';
+import HomeNavigator from '@/navigators/HomeNavigator';
 
 export default function App() {
   return (
