@@ -21,6 +21,10 @@ module Cavendish
         run_in_project("yarn add -D #{dependencies.join(' ')}")
       end
 
+      def add_jest_globals_to_eslint
+        inject_to_json_file('.eslintrc.json', jest_globals)
+      end
+
       def jest_dependencies
         %w[
           jest
@@ -42,6 +46,14 @@ module Cavendish
           jest: {
             preset: 'jest-expo',
             transform: { '^.+\\.[jt]sx?$': 'babel-jest' }
+          }
+        }
+      end
+
+      def jest_globals
+        {
+          env: {
+            jest: true
           }
         }
       end
