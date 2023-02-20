@@ -1,0 +1,39 @@
+/* eslint-disable no-undef */
+import { ExpoConfig, ConfigContext } from 'expo/config'; 
+
+const { APP_ENV } = process.env;
+
+type AppEnvironment = 'development' | 'staging' | 'production';
+
+const appEnv = APP_ENV as AppEnvironment || 'development';
+
+const appEnvironmentConfig = {
+  development: {
+    name: '<%= @config.human_project_name %> Dev',
+    slug: '<%= @config.project_name %>-dev',
+  },
+  staging: {
+    name: '<%= @config.human_project_name %> Staging',
+    slug: '<%= @config.project_name %>-staging',
+  },
+  production: {
+    name: '<%= @config.human_project_name %>',
+    slug: '<%= @config.project_name %>',
+  },
+};
+
+const currentEnvironment = appEnvironmentConfig[appEnv];
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
+  name: currentEnvironment.name,
+  slug: currentEnvironment.slug,
+  android: {
+    ...config.android,
+    package: `com.${config.owner}.${currentEnvironment.slug}`,
+  },
+  ios: {
+    ...config.ios,
+    bundleIdentifier: `com.${config.owner}.${currentEnvironment.slug}`,
+  },
+});

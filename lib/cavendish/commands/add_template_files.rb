@@ -7,6 +7,7 @@ module Cavendish
         copy_sample_navigator_and_screens
         replace_app_entrypoint
         copy_test_files
+        copy_app_config
       end
 
       private
@@ -36,6 +37,10 @@ module Cavendish
         )
         copy_file('__mocks__/tailwind-rn.ts', '__mocks__/tailwind-rn.ts')
         copy_file('__mocks__/@react-navigation/native.ts', '__mocks__/@react-navigation/native.ts')
+      end
+
+      def copy_app_config
+        copy_template('app.config.ts', 'app.config.ts')
       end
     end
   end
