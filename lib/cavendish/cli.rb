@@ -37,6 +37,7 @@ module Cavendish
         Cavendish::Commands::AddReactNavigation,
         Cavendish::Commands::AddTesting,
         Cavendish::Commands::AddCiConfig,
+        Cavendish::Commands::AddEASConfiguration,
         Cavendish::Commands::AddReadme,
         Cavendish::Commands::AddTemplateFiles,
         Cavendish::Commands::PatchDependencies,
