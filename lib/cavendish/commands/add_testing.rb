@@ -4,8 +4,7 @@ module Cavendish
       def perform
         install_dependencies
         add_config_to_package
-        @config.use_enzyme? ? add_enzyme_options : add_rn_testing_library_options
-        add_example_test_file
+        add_testing_library_dependencies
       end
 
       private
@@ -18,20 +17,12 @@ module Cavendish
         inject_to_json_file('package.json', package_configuration)
       end
 
-      def add_enzyme_options
-        run_in_project("yarn add -D #{enzyme_dependencies.join(' ')}")
-        inject_to_json_file('package.json', enzyme_configuration)
+      def add_testing_library_dependencies
+        run_in_project("yarn add -D #{dependencies.join(' ')}")
       end
 
-      def add_rn_testing_library_options
-        run_in_project("yarn add -D #{rn_testing_library_dependencies.join(' ')}")
-      end
-
-      def add_example_test_file
-        copy_template(
-          'src/screens/__specs__/HomeScreen.spec.js',
-          'src/screens/__specs__/HomeScreen.spec.js'
-        )
+      def add_jest_globals_to_eslint
+        inject_to_json_file('.eslintrc.json', jest_globals)
       end
 
       def jest_dependencies
@@ -42,19 +33,10 @@ module Cavendish
         ]
       end
 
-      def rn_testing_library_dependencies
+      def dependencies
         %w[
           @testing-library/jest-dom
           @testing-library/react-native
-        ]
-      end
-
-      def enzyme_dependencies
-        %w[
-          enzyme
-          enzyme-adapter-react-16
-          jest-enzyme
-          jest-environment-enzyme
         ]
       end
 
@@ -68,11 +50,10 @@ module Cavendish
         }
       end
 
-      def enzyme_configuration
+      def jest_globals
         {
-          jest: {
-            setupFilesAfterEnv: ['jest-enzyme'],
-            testEnvironment: 'enzyme'
+          env: {
+            jest: true
           }
         }
       end

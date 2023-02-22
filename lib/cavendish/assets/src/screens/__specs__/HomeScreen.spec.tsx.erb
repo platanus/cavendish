@@ -1,0 +1,29 @@
+import { render } from '@testing-library/react-native';
+import { Factory } from 'fishery';
+
+import HomeScreen from '../HomeScreen';
+
+const userFactory = Factory.define<{ id: number; name: string; }>(({ sequence }) => ({
+  id: sequence,
+  name: 'John Doe',
+  company: '<%= @config.human_project_name %>',
+}));
+
+describe('HomeScreen specs', () => {
+  it('shows application name', () => {
+    const component = render(<HomeScreen />);
+    expect(component.queryByText('Hello <%= @config.human_project_name %>!')).not.toBeNull();
+  });
+
+  it('has a white text over a gray background', () => {
+    const component = render(<HomeScreen />);
+    expect(component.queryByText('Hello <%= @config.human_project_name %>!')?.props.style).toMatch(/text-white/);
+    expect(component.root.props.style).toMatch(/bg-gray-\d{2,3}/);
+  });
+
+  it('has a valid factory', () => {
+    const user = userFactory.build()
+    expect(user.name).toEqual('John Doe');
+    expect(user.company).toEqual('<%= @config.human_project_name %>');
+  });
+});

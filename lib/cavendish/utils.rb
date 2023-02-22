@@ -50,6 +50,14 @@ module Cavendish
       File.write(package_path, JSON.pretty_generate(new_contents))
     end
 
+    def inject_to_file(in_project_path, new_content)
+      log 'INJECTING', in_project_path
+      path = File.join(project_root_path, in_project_path)
+      content = File.binread(path)
+      content += "#{new_content}\n"
+      File.open(path, "wb") { |file| file.write(content) }
+    end
+
     def get_or_generate_destination_path(destination)
       destination_path = File.join(project_root_path, destination)
       ::FileUtils.mkdir_p(File.dirname(destination_path))

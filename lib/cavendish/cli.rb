@@ -38,19 +38,14 @@ module Cavendish
         Cavendish::Commands::AddTesting,
         Cavendish::Commands::AddCiConfig,
         Cavendish::Commands::AddReadme,
-        Cavendish::Commands::ConfigureGit,
         Cavendish::Commands::AddTemplateFiles,
-        Cavendish::Commands::PatchDependencies
+        Cavendish::Commands::PatchDependencies,
+        Cavendish::Commands::ConfigureGit
       ]
     end
 
     def setup_config(config, args)
       config.project_name = args.first
-      config.testing_library = choose(
-        'Which testing library would you like to use?',
-        'Enzyme (unit orientated library)',
-        '@testing-library/react-native (integration orientated library)'
-      )
     end
   end
 end
