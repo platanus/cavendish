@@ -58,6 +58,27 @@ module Cavendish
       File.open(path, "wb") { |file| file.write(content) }
     end
 
+    def rename_key_in_json(file_path, key_path, new_key_name)
+      package_path = File.join(project_root_path, file_path)
+      json_obj = JSON.parse(File.read(package_path))
+
+      keys = key_path.split('.')
+      current_obj = json_obj
+      keys.each_with_index do |key, index|
+        if current_obj[key].nil?
+          raise "Key '#{key}' not found in JSON object"
+        end
+
+        if index == keys.length - 1
+          current_obj[new_key_name] = current_obj.delete(key)
+        else
+          current_obj = current_obj[key]
+        end
+      end
+
+      File.write(package_path, JSON.pretty_generate(json_obj))
+    end
+
     def get_or_generate_destination_path(destination)
       destination_path = File.join(project_root_path, destination)
       ::FileUtils.mkdir_p(File.dirname(destination_path))
