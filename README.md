@@ -29,16 +29,17 @@ Use the `cavendish create` command to create a new project:
 
     $ cavendish create <project-name>
 
-This command will ask for your preferences on some packages and generate a full React Native + Expo project with:
+This command will generate a full React Native + Expo project with:
 
 - ESLint
-- Testing with Jest (either with `@testing-library/react-native` or `enzyme`)
+- Testing with Jest and `@testing-library/react-native`
 - A base `@react-navigation` config for navigation and screens
 - A base `tailwind-rn` for managing styles
+- A base configuration of Expo Application Services (EAS)
 - CI configuration for CircleCI
 - An initialized Git repository
 
-The generator uses the `expo-cli` to generate a blank managed workflow project. *Bare workflow* projects are not supported for now.
+The generator uses the `expo-cli` to generate a typescript blank managed workflow project. *Bare workflow* projects are not supported for now.
 
 ## Testing
 
