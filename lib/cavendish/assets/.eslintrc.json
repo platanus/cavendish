@@ -33,6 +33,12 @@
         "extensions": [".spec.js", ".jsx", ".spec.ts", ".tsx"]
       }
     ],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["../*"]
+      }
+    ],
     "import/order": [
       "error",
       {

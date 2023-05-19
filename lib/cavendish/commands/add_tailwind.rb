@@ -26,7 +26,6 @@ module Cavendish
 
           # tailwind-rn
           tailwind.css
-          tailwind.json
         GITIGNORE
       end
     end
