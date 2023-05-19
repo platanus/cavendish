@@ -7,7 +7,9 @@ module Cavendish
         copy_sample_navigator_and_screens
         replace_app_entrypoint
         copy_test_files
+        copy_type_files
         copy_app_config
+        replace_babel_config
       end
 
       private
@@ -45,6 +47,11 @@ module Cavendish
 
       def copy_app_config
         copy_template('app.config.ts', 'app.config.ts')
+      end
+
+      def replace_babel_config
+        remove_in_project('babel.config.js')
+        copy_file('babel.config.js', 'babel.config.js')
       end
     end
   end
