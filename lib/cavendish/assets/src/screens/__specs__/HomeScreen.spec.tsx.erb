@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react-native';
 import { Factory } from 'fishery';
 
-import HomeScreen from '../HomeScreen';
+import HomeScreen from '@/screens/HomeScreen';
 import type { User } from '@/types/user';
 
 const userFactory = Factory.define<User>(({ sequence }) => ({
@@ -23,7 +23,7 @@ describe('HomeScreen specs', () => {
   });
 
   it('has a valid factory', () => {
-    const user = userFactory.build()
+    const user = userFactory.build();
     expect(user.name).toEqual('John Doe');
     expect(user.company).toEqual('<%= @config.human_project_name %>');
   });

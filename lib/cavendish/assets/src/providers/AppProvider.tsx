@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { TailwindProvider, Utilities } from 'tailwind-rn';
 
+// eslint-disable-next-line no-restricted-imports
 import utilities from '../../tailwind.json';
 
 export default function AppProvider({ children }: React.PropsWithChildren) {
