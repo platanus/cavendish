@@ -41,6 +41,7 @@ module Cavendish
         Cavendish::Commands::AddReadme,
         Cavendish::Commands::AddTemplateFiles,
         Cavendish::Commands::PatchDependencies,
+        Cavendish::Commands::Cleanup,
         Cavendish::Commands::ConfigureGit
       ]
     end
