@@ -8,6 +8,7 @@ module Cavendish
         configure_project_owner
         set_basic_project_config
         inject_advanced_eas_config
+        configure_eas_update
       end
 
       private
@@ -61,6 +62,10 @@ module Cavendish
 
       def set_basic_project_config
         run_in_project('eas build:configure')
+      end
+
+      def configure_eas_update
+        run_in_project('eas update:configure')
       end
 
       def inject_advanced_eas_config
