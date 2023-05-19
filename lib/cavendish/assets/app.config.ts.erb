@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { ExpoConfig, ConfigContext } from 'expo/config'; 
+import { ExpoConfig, ConfigContext } from 'expo/config';
 
 const { APP_ENV } = process.env;
 
@@ -7,18 +7,26 @@ type AppEnvironment = 'development' | 'staging' | 'production';
 
 const appEnv = APP_ENV as AppEnvironment || 'development';
 
+const APP_NAME = '<%= @config.human_project_name %>';
+const APP_SLUG = '<%= @config.project_name %>';
+const ANDROID_IDENTIFIER = APP_SLUG.replace(/-/g, '_');
+const IOS_IDENTIFIER = APP_SLUG;
+
 const appEnvironmentConfig = {
   development: {
-    name: '<%= @config.human_project_name %> Dev',
-    slug: '<%= @config.project_name %>-dev',
+    name: `${APP_NAME} Dev`,
+    androidIdentifier: `${ANDROID_IDENTIFIER}_dev`,
+    iosIdentifier: `${IOS_IDENTIFIER}-dev`,
   },
   staging: {
-    name: '<%= @config.human_project_name %> Staging',
-    slug: '<%= @config.project_name %>-staging',
+    name: `${APP_NAME} Staging`,
+    androidIdentifier: `${ANDROID_IDENTIFIER}_staging`,
+    iosIdentifier: `${IOS_IDENTIFIER}-staging`,
   },
   production: {
-    name: '<%= @config.human_project_name %>',
-    slug: '<%= @config.project_name %>',
+    name: APP_NAME,
+    androidIdentifier: ANDROID_IDENTIFIER,
+    iosIdentifier: IOS_IDENTIFIER,
   },
 };
 
@@ -27,13 +35,13 @@ const currentEnvironment = appEnvironmentConfig[appEnv];
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: currentEnvironment.name,
-  slug: currentEnvironment.slug,
+  slug: APP_SLUG,
   android: {
     ...config.android,
-    package: `com.${config.owner}.${currentEnvironment.slug}`,
+    package: `com.${config.owner}.${currentEnvironment.androidIdentifier}`,
   },
   ios: {
     ...config.ios,
-    bundleIdentifier: `com.${config.owner}.${currentEnvironment.slug}`,
+    bundleIdentifier: `com.${config.owner}.${currentEnvironment.iosIdentifier}`,
   },
 });
