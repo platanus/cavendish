@@ -25,6 +25,10 @@ module Cavendish
         copy_file('src/navigators/HomeNavigator.tsx', 'src/navigators/HomeNavigator.tsx')
       end
 
+      def copy_type_files
+        copy_file('src/types/user.d.ts', 'src/types/user.d.ts')
+      end
+
       def replace_app_entrypoint
         remove_in_project('App.tsx')
         copy_file('App.tsx', 'App.tsx')

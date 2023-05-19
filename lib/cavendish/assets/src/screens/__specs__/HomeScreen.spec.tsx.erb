@@ -2,8 +2,9 @@ import { render } from '@testing-library/react-native';
 import { Factory } from 'fishery';
 
 import HomeScreen from '../HomeScreen';
+import type { User } from '@/types/user';
 
-const userFactory = Factory.define<{ id: number; name: string; }>(({ sequence }) => ({
+const userFactory = Factory.define<User>(({ sequence }) => ({
   id: sequence,
   name: 'John Doe',
   company: '<%= @config.human_project_name %>',
