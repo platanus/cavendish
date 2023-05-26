@@ -35,6 +35,7 @@ module Cavendish
         Cavendish::Commands::AddEslint,
         Cavendish::Commands::AddAliasSupport,
         Cavendish::Commands::AddReactNavigation,
+        Cavendish::Commands::AddRedux,
         Cavendish::Commands::AddTesting,
         Cavendish::Commands::AddCiConfig,
         Cavendish::Commands::AddEASConfiguration,
