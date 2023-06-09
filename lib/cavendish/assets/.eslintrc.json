@@ -33,10 +33,19 @@
         "extensions": [".spec.js", ".jsx", ".spec.ts", ".tsx"]
       }
     ],
+    "no-param-reassign": 0,
     "no-restricted-imports": [
       "error",
       {
         "patterns": ["../*"]
+      }
+    ],
+    "@typescript-eslint/no-restricted-imports":[
+      "error",
+      {
+        "name": "react-redux",
+        "importNames": ["useSelector", "useDispatch"],
+        "message": "Use typed hooks `useAppDispatch` and `useAppSelector` instead."
       }
     ],
     "import/order": [

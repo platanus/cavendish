@@ -10,6 +10,7 @@ module Cavendish
         copy_type_files
         copy_app_config
         replace_babel_config
+        copy_redux_setup_files
       end
 
       private
@@ -52,6 +53,12 @@ module Cavendish
       def replace_babel_config
         remove_in_project('babel.config.js')
         copy_file('babel.config.js', 'babel.config.js')
+      end
+
+      def copy_redux_setup_files
+        copy_file('src/store/index.ts', 'src/store/index.ts')
+        copy_file('src/store/hooks.ts', 'src/store/hooks.ts')
+        copy_file('src/store/reducers.ts', 'src/store/reducers.ts')
       end
     end
   end
