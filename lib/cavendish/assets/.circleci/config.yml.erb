@@ -1,6 +1,6 @@
 version: 2.1
 
-node-image: &node-image circleci/node:14
+node-image: &node-image circleci/node:<%= Cavendish::NODE_VERSION %>
 
 executors:
   base-executor:
