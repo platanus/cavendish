@@ -18,6 +18,8 @@ module Cavendish
     end
 
     def define_create_command(config)
+      global_option('--no-node-version-check') { $no_node_version_check = true }
+
       command('create') do |c|
         c.syntax = 'cavendish create'
         c.description = 'Create a new React Native + Expo project'
@@ -48,6 +50,8 @@ module Cavendish
     end
 
     def setup_config(config, args)
+      Cavendish::NodeVersionEnsurer.new.ensure! unless $no_node_version_check
+
       config.project_name = args.first
     end
   end

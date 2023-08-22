@@ -8,8 +8,8 @@ module Cavendish
       private
 
       def copy_ci_and_version_files
-        copy_file(".circleci/config.yml", ".circleci/config.yml")
-        copy_file(".node-version", ".node-version")
+        copy_template(".circleci/config.yml", ".circleci/config.yml")
+        copy_template(".node-version", ".node-version")
       end
     end
   end
